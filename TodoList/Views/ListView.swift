@@ -23,6 +23,9 @@ struct ListView: View {
             }
         }
         .navigationTitle(Text("Todo List 📝"))
+        .navigationBarItems(leading: EditButton(), trailing: NavigationLink("Add", destination: {
+            
+        }))
     }
 }
 

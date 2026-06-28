@@ -6,16 +6,24 @@
 //
 
 import SwiftUI
-
 struct ListView: View {
     var body: some View {
         List {
-            Text("Hi there")
+ListRowView()
         }
         .navigationTitle(Text("Todo List 📝"))
     }
 }
+struct ListRowView :  View{
+    var body : some View{
+        HStack{
+            Image(systemName: "checkmark.circle")
+            Text("This is the the first Item")
 
+        }
+
+    }
+}
 #Preview {
     NavigationView {
         ListView()

@@ -7,23 +7,25 @@
 
 import SwiftUI
 struct ListView: View {
+    @State private var myList : [String] =
+[
+   "This is the first title",
+   "This is the second title",
+   "This is the third title",
+   "This is the fourth title"
+]
     var body: some View {
         List {
-ListRowView()
+            ForEach(myList, id: \.self) { item in
+                ListRowView(
+                    title:item
+                )
+            }
         }
         .navigationTitle(Text("Todo List 📝"))
     }
 }
-struct ListRowView :  View{
-    var body : some View{
-        HStack{
-            Image(systemName: "checkmark.circle")
-            Text("This is the the first Item")
 
-        }
-
-    }
-}
 #Preview {
     NavigationView {
         ListView()

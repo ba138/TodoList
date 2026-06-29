@@ -21,13 +21,18 @@ struct ListView: View {
                     title:item.item ,
                     isCompleted: item.isCompleted
                 )
-            }
+                
+            }.onDelete(perform: deletreItems)
         }
         .listStyle(.automatic)
         .navigationTitle(Text("Todo List 📝"))
         .navigationBarItems(leading: EditButton(), trailing: NavigationLink("Add", destination: {
             AddView()
         }))
+    }
+    func deletreItems (indexSet : IndexSet){
+        myList.remove(atOffsets: indexSet)
+
     }
 }
 

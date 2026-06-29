@@ -31,13 +31,7 @@ struct ListView: View {
             AddView()
         }))
     }
-    func deletreItems (indexSet : IndexSet){
-        myList.remove(atOffsets: indexSet)
-
-    }
-    func onMove(from : IndexSet ,to : Int){
-        myList.move(fromOffsets: from, toOffset: to)
-    }
+  
 }
 
 #Preview {

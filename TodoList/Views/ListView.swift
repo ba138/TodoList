@@ -23,6 +23,7 @@ struct ListView: View {
                 )
                 
             }.onDelete(perform: deletreItems)
+                .onMove(perform: onMove)
         }
         .listStyle(.automatic)
         .navigationTitle(Text("Todo List 📝"))
@@ -33,6 +34,9 @@ struct ListView: View {
     func deletreItems (indexSet : IndexSet){
         myList.remove(atOffsets: indexSet)
 
+    }
+    func onMove(from : IndexSet ,to : Int){
+        myList.move(fromOffsets: from, toOffset: to)
     }
 }
 

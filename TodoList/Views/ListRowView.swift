@@ -5,7 +5,7 @@
 //  Created by Basit Ali on 28/06/2026.
 //
 
-import SwiftUI
+internal import SwiftUI
 
 struct ListRowView :  View{
     let title : String

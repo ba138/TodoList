@@ -7,18 +7,19 @@
 
 import SwiftUI
 struct ListView: View {
-    @State private var myList : [String] =
+    @State private var myList : [ItemsModel] =
 [
-   "This is the first title",
-   "This is the second title",
-   "This is the third title",
-   "This is the fourth title"
+    ItemsModel(item: "This is the first item", isCompleted: true),
+    ItemsModel(item: "This is the Second item", isCompleted: false),
+    ItemsModel(item: "This is the Third item", isCompleted: true),
+    ItemsModel(item: "This is the Fourth item", isCompleted: false),
 ]
     var body: some View {
         List {
-            ForEach(myList, id: \.self) { item in
+            ForEach(myList, ) { item in
                 ListRowView(
-                    title:item
+                    title:item.item ,
+                    isCompleted: item.isCompleted
                 )
             }
         }

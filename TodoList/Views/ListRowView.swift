@@ -13,6 +13,7 @@ struct ListRowView :  View{
     var body : some View{
         HStack{
             Image(systemName:isCompleted ? "checkmark.circle" : "circle")
+                .foregroundColor(isCompleted ? .green : .red)
 
             Text(title)
 

@@ -15,6 +15,11 @@ struct ListView: View {
                     title: item.item,
                     isCompleted: item.isCompleted
                 )
+                .onTapGesture {
+                    withAnimation(.linear){
+                        listViewModel.updateItem(item: item)
+                    }
+                }
                 
             }
             .onDelete(perform: listViewModel.deleteItems)

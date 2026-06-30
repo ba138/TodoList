@@ -8,7 +8,9 @@
 internal import SwiftUI
 
 struct AddView: View {
+    @EnvironmentObject var viewModel : ListViewModel
     @State private var textFieldText : String = ""
+    @State private var showAlert : Bool = false
     var body: some View {
         ScrollView {
             TextField("Add Todo", text: $textFieldText)
@@ -19,7 +21,9 @@ struct AddView: View {
                 .padding(20)
             Spacer()
             Button {
-                
+                viewModel.addItems(title: textFieldText)
+                textFieldText = ""
+                showAlert.toggle()
             } label: {
                 Text("Add Todo")
                     .font(.subheadline)
@@ -29,6 +33,9 @@ struct AddView: View {
                     .frame(maxWidth: .infinity)
                     .background(Color.green.cornerRadius(12))
                     .padding(20)
+            }
+            .alert("Item Has Been Added", isPresented: $showAlert) {
+                
             }
 
         }
@@ -41,4 +48,5 @@ struct AddView: View {
         AddView()
 
     }
+    .environmentObject(ListViewModel())
 }

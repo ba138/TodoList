@@ -23,10 +23,11 @@ struct AddView: View {
                 .padding(20)
             Spacer()
             Button {
-                if validateText() {
+                if (validateText() == true) {
                     viewModel.addItems(title: textFieldText)
                     textFieldText = ""
                     dismiss()
+                   
                 }
             } label: {
                 Text("Add Todo")
@@ -47,11 +48,13 @@ struct AddView: View {
         }
     }
     func validateText() -> Bool {
-        if textFieldText .count<3{
-            alertTitle = "Please add some Items"
-            showAlert.toggle()
+        if textFieldText .count>3{
+          
             return true
         }
+        alertTitle = "Please add some item"
+        showAlert.toggle()
+
         return false
     }
     func getAlert() -> Alert{

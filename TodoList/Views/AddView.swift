@@ -11,6 +11,8 @@ struct AddView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var viewModel : ListViewModel
     @State private var textFieldText : String = ""
+    @State private var alertTitle : String = ""
+    @State private var showAlert : Bool = false
     var body: some View {
         ScrollView {
             TextField("Add Todo", text: $textFieldText)
@@ -21,11 +23,11 @@ struct AddView: View {
                 .padding(20)
             Spacer()
             Button {
-                if !textFieldText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                if validateText() {
                     viewModel.addItems(title: textFieldText)
                     textFieldText = ""
                     dismiss()
-                } 
+                }
             } label: {
                 Text("Add Todo")
                     .font(.subheadline)
@@ -37,10 +39,23 @@ struct AddView: View {
                     .padding(20)
             }
             
-
+            
         }
         .navigationTitle(Text("Add Items 🖊️"))
+        .alert(isPresented: $showAlert) {
+            getAlert()
+        }
     }
+    func validateText() -> Bool {
+        if textFieldText .count<3{
+            alertTitle = "Please add some Items"
+            showAlert.toggle()
+            return true
+        }
+        return false
+    }
+    func getAlert() -> Alert{
+return Alert(title: Text(alertTitle))    }
 }
 
 #Preview {

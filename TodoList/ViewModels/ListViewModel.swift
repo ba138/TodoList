@@ -6,8 +6,8 @@
 //
 
 import Foundation
-internal import Combine
-internal import SwiftUI
+import Combine
+import SwiftUI
 class ListViewModel  : ObservableObject{
     @Published var myList : [ItemsModel] =
     [
@@ -47,4 +47,10 @@ class ListViewModel  : ObservableObject{
             myList[index] = item.updateCompletion()
         }
     }
+    func saveData(){
+        if let encodedData = try? JSONEncoder().encode(myList) {
+            UserDefaults.standard.set(encodedData, forKey: "myList")
+        }
+    }
 }
+

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct ItemsModel : Identifiable {
+struct ItemsModel : Identifiable, Codable{
     let id : String
     let item : String
     let isCompleted : Bool
@@ -19,3 +19,4 @@ struct ItemsModel : Identifiable {
         return ItemsModel(id: id, item: item, isCompleted: !isCompleted)
     }
 }
+

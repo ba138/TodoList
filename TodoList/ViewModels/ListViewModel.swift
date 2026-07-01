@@ -30,7 +30,10 @@ class ListViewModel  : ObservableObject{
 //            ItemsModel(item: "This is the Fourth item", isCompleted: false),
 //        ]
 //        myList.append(contentsOf: newItems)
-        guard let data = UserDefaults.standard.data(forKey: itemKey) else{return}
+        guard let
+                data = UserDefaults.standard.data(forKey: itemKey) ,
+        let saveData = try? JSONDecoder().decode([ItemsModel].self, from: data)
+        else{return}
     }
     func deleteItems(_ indexSet: IndexSet) {
         myList.remove(atOffsets: indexSet)

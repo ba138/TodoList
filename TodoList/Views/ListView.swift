@@ -9,21 +9,27 @@ internal import SwiftUI
 struct ListView: View {
     @EnvironmentObject var listViewModel: ListViewModel
     var body: some View {
-        List {
-            ForEach(listViewModel.myList) { item in
-                ListRowView(
-                    title: item.item,
-                    isCompleted: item.isCompleted
-                )
-                .onTapGesture {
-                    withAnimation(.linear){
-                        listViewModel.updateItem(item: item)
+        ZStack{
+            if(listViewModel.myList.isEmpty){
+                Text("No Items Avaliable!")
+            }else{
+                List {
+                    ForEach(listViewModel.myList) { item in
+                        ListRowView(
+                            title: item.item,
+                            isCompleted: item.isCompleted
+                        )
+                        .onTapGesture {
+                            withAnimation(.linear){
+                                listViewModel.updateItem(item: item)
+                            }
+                        }
+                        
                     }
+                    .onDelete(perform: listViewModel.deleteItems)
+                    .onMove(perform: listViewModel.onMove)
                 }
-                
             }
-            .onDelete(perform: listViewModel.deleteItems)
-            .onMove(perform: listViewModel.onMove)
         }
         .listStyle(.automatic)
         .navigationTitle(Text("Todo List 📝"))

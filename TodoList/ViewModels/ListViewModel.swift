@@ -34,6 +34,7 @@ class ListViewModel  : ObservableObject{
                 data = UserDefaults.standard.data(forKey: itemKey) ,
         let saveData = try? JSONDecoder().decode([ItemsModel].self, from: data)
         else{return}
+        self.myList = saveData
     }
     func deleteItems(_ indexSet: IndexSet) {
         myList.remove(atOffsets: indexSet)

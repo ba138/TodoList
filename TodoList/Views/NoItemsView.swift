@@ -8,6 +8,7 @@
 internal import SwiftUI
 
 struct NoItemsView: View {
+    @State var animated : Bool = false
     var body: some View {
         ScrollView{
             VStack(spacing : 20){
@@ -25,14 +26,28 @@ struct NoItemsView: View {
                                     .foregroundColor(.white)
                                     .frame(height: 55)
                                     .frame(maxWidth: .infinity)
-                                    .background(Color.green)
+                                    .background(animated ? Color.green : Color.red)
                                     .cornerRadius(12)
                             }
-                            .padding(40)
+            .padding(.horizontal , animated ? 30 : 50)
+            .scaleEffect(animated ? 1.1 : 1.0)
+                            .onAppear(perform: addAnimated)
 
             
         }
         .frame(maxWidth: .infinity , maxHeight: .infinity)
+    }
+    func addAnimated() {
+        guard !animated else {return}
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5,) {
+            withAnimation(
+                Animation
+                    .easeInOut(duration: 2.0)
+                    .repeatForever()
+            ) {
+                animated.toggle()
+            }
+        }
     }
 }
 

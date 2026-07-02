@@ -22,12 +22,19 @@ struct NoItemsView: View {
             NavigationLink {
                 AddView()
             } label: {
-                Text("Add SomeThingh")
+                Text("Add Something")
                                     .foregroundColor(.white)
                                     .frame(height: 55)
                                     .frame(maxWidth: .infinity)
                                     .background(animated ? Color.green : Color.red)
                                     .cornerRadius(12)
+                                    .offset(y : animated ? -7 : 0)
+                                    .shadow(
+                                        color: animated ? Color.green.opacity(0.7) : Color.red.opacity(0.7),
+                                        radius: animated ? 30 : 10,
+                                        y: animated ? 50 : 30 
+                                    
+                                    )
                             }
             .padding(.horizontal , animated ? 30 : 50)
             .scaleEffect(animated ? 1.1 : 1.0)

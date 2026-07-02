@@ -32,7 +32,7 @@ struct NoItemsView: View {
                                     .shadow(
                                         color: animated ? Color.green.opacity(0.7) : Color.red.opacity(0.7),
                                         radius: animated ? 30 : 10,
-                                        y: animated ? 50 : 30 
+                                        y: animated ? 50 : 30
                                     
                                     )
                             }
